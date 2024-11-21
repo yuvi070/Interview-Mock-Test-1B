@@ -1,9 +1,9 @@
 import {Card1, Image, CardDiv, CardButton} from './styled'
 
 const Card = props => {
-  const {each, onClickButton} = props
+  const {each, onRemoveCountry} = props
   const onClickButton2 = () => {
-    onClickButton(each.id)
+    onRemoveCountry(each.id)
   }
   return (
     <Card1>

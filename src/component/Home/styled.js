@@ -36,3 +36,8 @@ export const VisitedDiv = styled.ul`
   flex-wrap: wrap;
   overflow: auto;
 `
+export const MainHeading = styled.h1`
+  color: white;
+  font-family: Roboto;
+  font-weight: bold;
+`

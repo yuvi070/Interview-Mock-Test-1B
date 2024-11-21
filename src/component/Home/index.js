@@ -4,7 +4,7 @@ import CountryList from '../CountryList'
 
 import Card from '../Card'
 
-import {Main, Home1, CountriesDiv, VisitedDiv} from './styled'
+import {Main, MainHeading, Home1, CountriesDiv, VisitedDiv} from './styled'
 
 const initialCountriesList = [
   {
@@ -96,13 +96,24 @@ class Home extends Component {
     }))
   }
 
+  onRemoveCountry = id => {
+    this.setState(prev => ({
+      list: prev.list.map(each => {
+        if (each.id === id) {
+          return {...each, isVisited: false}
+        }
+        return each
+      }),
+    }))
+  }
+
   render() {
     const {list} = this.state
     const visitedCountry = list.filter(each => each.isVisited === true)
     return (
       <Main>
         <Home1>
-          <h1>Countries</h1>
+          <MainHeading>Countries</MainHeading>
           <CountriesDiv>
             {list.map(each => (
               <CountryList
@@ -112,11 +123,11 @@ class Home extends Component {
               />
             ))}
           </CountriesDiv>
-          <h1>Visited Countries</h1>
+          <MainHeading>Visited Countries</MainHeading>
           <VisitedDiv as="ul">
             {visitedCountry.map(each => (
               <Card
-                onClickButton={this.onClickButton}
+                onRemoveCountry={this.onRemoveCountry}
                 key={each.id}
                 each={each}
               />
