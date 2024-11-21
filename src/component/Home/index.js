@@ -2,7 +2,9 @@ import {Component} from 'react'
 
 import CountryList from '../CountryList'
 
-import {Main, Home1, CountriesDiv} from './styled'
+import Card from '../Card'
+
+import {Main, Home1, CountriesDiv, VisitedDiv} from './styled'
 
 const initialCountriesList = [
   {
@@ -84,19 +86,42 @@ class Home extends Component {
 
   onClickButton = id => {
     // Need to implement this:)
+    this.setState(prev => ({
+      list: prev.list.map(each => {
+        if (each.id === id) {
+          return {...each, isVisited: !prev.isVisited}
+        }
+        return each
+      }),
+    }))
   }
 
   render() {
     const {list} = this.state
+    const visitedCountry = list.filter(each => each.isVisited === true)
     return (
       <Main>
         <Home1>
           <h1>Countries</h1>
           <CountriesDiv>
             {list.map(each => (
-              <CountryList key={each.id} each={each} />
+              <CountryList
+                onClickButton={this.onClickButton}
+                key={each.id}
+                each={each}
+              />
             ))}
           </CountriesDiv>
+          <h1>Visited Countries</h1>
+          <VisitedDiv as="ul">
+            {visitedCountry.map(each => (
+              <Card
+                onClickButton={this.onClickButton}
+                key={each.id}
+                each={each}
+              />
+            ))}
+          </VisitedDiv>
         </Home1>
       </Main>
     )

@@ -14,6 +14,8 @@ export const Home1 = styled.div`
   background-color: #161624;
   padding: 10px;
   border-radius: 8px;
+  padding-left: 20px;
+  padding-right: 20px;
 `
 
 export const CountriesDiv = styled.ul`
@@ -23,4 +25,14 @@ export const CountriesDiv = styled.ul`
   overflow: auto;
   border: 2px solid #94a3b8;
   border-radius: 5px;
+`
+export const VisitedDiv = styled.ul`
+  padding-left: 0px;
+  height: 40%;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: auto;
 `
